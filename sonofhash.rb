@@ -26,4 +26,11 @@ class SonOfHash
     return @store.delete(key)
   end
   
+  def commit
+    @store.each do |key, value|
+      @parent[key] = value
+    end
+
+  end
+  
 end
