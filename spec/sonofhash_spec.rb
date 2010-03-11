@@ -1,5 +1,5 @@
 require 'sonofhash'
-require 'ruby-debug'
+#require 'ruby-debug'
 
 describe SonOfHash do
   
