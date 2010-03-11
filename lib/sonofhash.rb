@@ -1,5 +1,24 @@
 require 'set'
 
+# Quacks like a Hash, but contains one additional method - commit()
+#
+# Typical usage:
+#
+#   require 'rubygems'
+#   require 'sonofhash'
+#
+#   parent = SonOfHash.new
+#   child = parent.new_child
+#
+#   parent['name'] = 'Moondublin'
+#   puts child['name']            # Moondublin
+#   
+#   child['name'] = 'Lugrat'
+#   puts parent['name']           # Moondublin
+#
+#   child.commit
+#   puts parent['name']           # Lugrat
+#
 class SonOfHash
 
   def initialize(parent={})
@@ -8,6 +27,8 @@ class SonOfHash
     @parent = parent
   end
 
+  # Create a new child of this object. This is the primary way to
+  # record changes.
   def new_child
     return SonOfHash.new(self)
   end
@@ -36,6 +57,7 @@ class SonOfHash
     return @store.delete(key)
   end
   
+  # Merges the changes of this object into its parent
   def commit
     @store.each {|key, value| @parent[key] = value}
     @deletions.each {|key| @parent.delete(key)}
