@@ -37,22 +37,43 @@ describe SonOfHash do
     parent = SonOfHash.new
     child = parent.new_child
 
-    child['key'] = 'value'
+    parent['book1'] = 'Domain Driven Design'
+    child['book1'] = 'Programming in Scala'
+    child['book2'] = 'Metaprogramming in Ruby'
 
-    parent['key'].should == nil
-    child['key'].should == 'value'
+    # Before commit
+    parent['book1'].should == 'Domain Driven Design'
+    parent['book2'].should == nil
+    child['book1'].should == 'Programming in Scala'
+    child['book2'].should == 'Metaprogramming in Ruby'
 
     child.commit
 
-    parent['key'].should == 'value'
-    child['key'].should == 'value'
+    # After commit both parent and child should be the same
+    parent['book1'].should == 'Programming in Scala'
+    parent['book2'].should == 'Metaprogramming in Ruby'
+    child['book1'].should == 'Programming in Scala'
+    child['book2'].should == 'Metaprogramming in Ruby'
   end
   
-  it "can merge value changes with its parent" do
-    
-  end
-
+ 
   it "can merge deletions with its parent" do
+    parent = SonOfHash.new
+    child = parent.new_child
+    
+    parent['colour'] = 'color'
+    child.delete('colour')
+    
+    # Before commit
+    parent['colour'].should == 'color'
+    child.member?('colour').should == false
+    child['colour'].should == nil
+    
+    child.commit
+    
+    # After commit
+    parent.member?('colour').should == false
+    child.member?('colour').should == false
     
   end
   
