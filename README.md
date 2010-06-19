@@ -1,4 +1,4 @@
-Quacks like a Hash, but contains one additional method (commit) to help you merge changes from child hashes.
+Quacks like a Hash, but contains one additional method (commit) to help you merge changes from child hashes. I use it like Martin Fowler's Unit of Work pattern - http://martinfowler.com/eaaCatalog/unitOfWork.html
 
 Typical usage:
 
