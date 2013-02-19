@@ -1,5 +1,7 @@
 Quacks like a Hash, but contains one additional method (commit) to help you merge changes from child hashes. I use it like Martin Fowler's Unit of Work pattern - http://martinfowler.com/eaaCatalog/unitOfWork.html
 
+[![Build Status](https://travis-ci.org/pokle/SonOfHash.png?branch=master)](https://travis-ci.org/pokle/SonOfHash)
+
 Typical usage:
 
 	require 'rubygems'
