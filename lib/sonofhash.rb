@@ -41,6 +41,7 @@ class SonOfHash
   
   def []=(key, value)
     @store[key] = value
+    @deletions.delete(key)
   end
   
   def has_key?(key)
@@ -61,11 +62,14 @@ class SonOfHash
   def commit
     @store.each {|key, value| @parent[key] = value}
     @deletions.each {|key| @parent.delete(key)}
-    
-    # I want to clear the state here, but I don't know
-    # a good spec for it yet
-    # @store.clear
-    # @deletions.clear
+
+    rollback
   end
+
+  def rollback
+    @store.clear
+    @deletions.clear
+  end
+
   
 end
