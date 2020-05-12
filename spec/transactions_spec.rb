@@ -10,7 +10,7 @@ describe SonOfHash do
     son['gun'].should == 'shona'
   end
   
-  its "values are independent of modifications to its children" do
+  it "values are independent of modifications to its children" do
     
     subject['twinkle'] = 'star'
     child = subject.new_child
@@ -21,7 +21,7 @@ describe SonOfHash do
   
   end
   
-  its "child can merge changes back to it" do
+  it "child can merge changes back to it" do
     child = subject.new_child
 
     subject['book1'] = 'Domain Driven Design'
@@ -44,7 +44,7 @@ describe SonOfHash do
   end
   
  
-  its "child can merge deletions back to it" do
+  it "child can merge deletions back to it" do
     child = subject.new_child
     
     subject['colour'] = 'color'

@@ -19,3 +19,9 @@ Typical usage:
 	
 	child.commit
 	puts parent['name']           # Lugrat
+
+
+## Tests
+
+	bundle install --path vendor/bundle
+	bundle exec rake
